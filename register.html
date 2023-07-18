@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <title>선택과목 교환 도우미</title>
+    <script src="/script/reg.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="/script/main.js"></script>
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            background-color: rgb(37, 39, 61);
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgb(37, 39, 61);
+            
+        }
+        ::-webkit-scrollbar-track {
+            background-color: rgb(240, 240, 240);
+        }
+        body{
+            font-family : 'Arial';
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+            margin: 0;
+            height: 100vh;
+        }
+        /*Block 1*/
+        img {
+            position: relative;
+            left: 41px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        #header {
+            display: block;
+            overflow: auto;
+            background: rgb(37, 39, 61);
+        }
+        p#t {
+            display: inline-block;
+            margin-left: 36px;
+            font-size: 14pt;
+            color: white;
+        }
+
+        /*Block 2*/
+        #viewer {
+            height: 70vh;
+        }
+        #container1{
+            padding: 8px;
+            
+        }
+        #container2{
+            padding-top: 24px;
+            height: 100%;
+        }
+        .dropdown {
+            font-size: 18px;
+            color: #60666d;
+            padding: 8px;
+            border: 1px solid rgb(216, 216, 216);
+        }
+        .selectbox {
+            display: inline-block;
+            width: 45%;
+            height: 100%;
+            border: 1px solid black;
+        }
+        #inner-con1 {
+            float: left;
+            overflow-y: scroll;
+        }
+        #inner-con2 {
+            float: right;
+            overflow-y: scroll;
+        }
+        
+        .secGrad {
+            border-top: 1px solid rgb(37, 39, 61);
+            border-bottom: 1px solid rgb(37, 39, 61);
+            padding-left: 16px;
+            margin-top: 4px;
+            font-size: 14pt;
+        }
+        .secTitle {
+            padding-left: 32px;
+            margin-top: 4px;
+            font-size: 13pt;
+        }
+        .secItem {
+            padding-left: 42px;
+            margin-top: 4px;
+            
+            font-size: 12pt;
+        }
+        
+        .secItem:hover, .secItem:focus{
+            outline:none;
+            background: #f2f2f2;
+        }
+        .secItem:active {
+            outline:none;
+            background: #eaeaea;
+        }
+        
+        #go {
+            position: fixed;
+            margin: 42px;
+            padding: 16px;
+            height: 50px;
+            width: 100px;
+            line-height: 50px;
+            font-size: 16pt;
+            text-align: center;
+            color: white;
+            right: 0px;
+            bottom: 0px;
+            background-color: rgb(37, 39, 61);
+
+        }
+        #go:hover, #go:focus{
+            outline:none;
+            background: rgb(62, 65, 103);
+        }
+        #go:active {
+            outline:none;
+            background: rgb(37, 39, 61);
+        }
+        
+        @media all and (max-width:767px) {
+            #go {
+                position: fixed;
+                margin: 0;
+                padding: 16px;
+                height: 50px;
+                width: 100%;
+                line-height: 50px;
+                font-size: 16pt;
+                text-align: center;
+                color: white;
+                right: 0px;
+                bottom: 0px;
+                background-color: rgb(37, 39, 61);
+            }
+            #go:hover, #go:focus{
+                outline:none;
+                background: rgb(37, 39, 61);
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <img src="http://school.gyo6.net/upload/logoImg/gyeongbuk/LogoImg_202010161011001000.gif" alt="">
+    <div id="header">
+        <p id="t">선택과목 교환 도우미</p>
+        <div id="go" onclick="register()">
+            등록
+        </div>
+    </div>
+    <div id="viewer">
+        <div id="container1">
+            <select class="dropdown" id="year" onchange="onselectyear()">
+                <option value="n">입학년도선택</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+            <select class="dropdown" id="grade" onchange="">
+                <option value="n">학년선택</option>
+                <option value="1">1학년</option>
+                <option value="2">2학년</option>
+              </select>
+              <select class="dropdown" id="class">
+                <option value="n">반선택</option>
+                <option value="1">1반</option>
+                <option value="2">2반</option>
+                <option value="3">3반</option>
+                <option value="4">4반</option>
+                <option value="5">5반</option>
+                <option value="6">6반</option>
+                <option value="7">7반</option>
+                <option value="8">8반</option>
+                <option value="9">9반</option>
+              </select>
+              <select class="dropdown" id="number">
+                <option value="n">번호선택</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+              </select>
+            </div>
+        <div id="container2">
+            <div class="selectbox" id="inner-con1"></div>
+            ⟩⟩
+            <div class="selectbox" id="inner-con2"></div>
+        </div>
+    </div>
+  </body>
+</html>

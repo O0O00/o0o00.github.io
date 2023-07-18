@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <title>선택과목 교환 도우미</title>
+    <script src="/script/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="/script/main.js"></script>
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            background-color: rgb(37, 39, 61);
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgb(37, 39, 61);
+            
+        }
+        ::-webkit-scrollbar-track {
+            background-color: rgb(240, 240, 240);
+        }
+        body{
+            font-family : 'Arial';
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /*Block 1*/
+        img {
+            position: relative;
+            left: 41px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        #header {
+            display: block;
+            background: rgb(37, 39, 61);
+        }
+        p#t {
+            display: inline-block;
+            margin-left: 36px;
+            font-size: 14pt;
+            color: white;
+        }
+        
+        /*Block 2*/
+        #container2{
+            overflow-y: scroll;
+            height: calc(100vh - 300px);
+        }
+        .dropdown {
+            margin: 8px;
+            padding: 8px;
+            font-size: 18px;
+            color: #60666d;
+            border: 1px solid rgb(216, 216, 216);
+        }
+        
+        .subtitle {
+            display: inline-block;
+            width: 30%;
+            
+            
+            font-size: 12pt;
+            color:rgb(37, 39, 61);
+            text-align: center;
+        }
+
+        .tip {
+            padding-top: 24px;
+            margin-top: 32px;
+            border-bottom: 1px solid rgb(37, 39, 61);
+            text-align: center;
+            padding-left: 52px;
+            padding-right: 52px;
+        }
+        .listview {
+            height: auto;
+        }
+        .list {
+            cursor : pointer;
+            border-bottom: 1px solid rgb(202, 202, 202);
+            margin-left: 52px;
+            margin-right: 52px;
+            overflow: auto;
+            text-align: center;
+        }
+        .list:hover, .list:focus, .list:active{
+            outline:none;
+            background: #dddddd;
+        }
+        .item {
+            display: inline-block;
+            margin-top: 24px;
+            margin-bottom: 24px;
+            width: 30%;
+            
+            font-size: 14pt;
+            text-align: center;
+        }
+
+
+        @media all and (max-width:767px) {
+            .tip {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            .list {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+        }
+        
+        
+        </style>
+    </head>
+
+    <body>
+        <img src="http://school.gyo6.net/upload/logoImg/gyeongbuk/LogoImg_202010161011001000.gif" alt="">
+        <div id="header">
+            <p id="t">선택과목 교환 도우미</p>
+        </div>
+        <div id="viewer">
+            <div id="container1">
+                <select class="dropdown" id="year" onchange="onselectyear()">
+                    <option value="n">입학년도선택</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+                <select class="dropdown" id="dep" onchange="onselectdep()">
+                    <option value="n">학년/계열 선택</option>
+                </select>
+                <select class="dropdown" id="subject" onchange="search()">
+                    <option value="n">과목선택</option>
+                </select>
+                <div class="tip">
+                    <div class="subtitle">선택과목 ▾</div>
+                    <div class="subtitle">희망과목 ▾</div>
+                    <div class="subtitle">신청자 ▾</div>
+                </div>
+            </div>
+            <div id="container2">
+                <div class="listview">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
