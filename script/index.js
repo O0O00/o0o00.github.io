@@ -9,7 +9,25 @@ const testdumy = {
         "ta":"과학",
         "ts":"생명과학Ⅰ",
         "progress":2.7
-        }
+        },
+        {
+            "sid":"3318",
+            "grade":"2",
+            "wa":"수학",
+            "ws":"수학과제탐구",
+            "ta":"과학",
+            "ts":"생명과학Ⅰ",
+            "progress":2.7
+            },
+            {
+                "sid":"3318",
+                "grade":"2",
+                "wa":"수학",
+                "ws":"수학과제탐구",
+                "ta":"과학",
+                "ts":"생명과학Ⅰ",
+                "progress":2.7
+                }
     ],
     "2023":[
         {
@@ -55,12 +73,15 @@ function onselectdep(){
 
     let dom = '';
     $.each(validSub, (_, value)=>{
-        dom += `<option value= "${dep.join('/')}/${value}">${value}</option>`;
+        dom += `<option class="1" value= "${dep.join('/')}/${value}">${value}</option>`;
     });
     console.log(dom);
     $('#subject').append(dom);
 }
-
+function sleep(ms) {
+    const wakeUpTime = Date.now() + ms;
+    while (Date.now() < wakeUpTime) {}
+  }
 function search(){
     $('.listview').empty();
     let dat = $("#subject option:checked").val();
@@ -69,21 +90,24 @@ function search(){
     dat = dat.split('/');
 
     //request data
-    let res = testdumy;
-
-    //filtering
-    res = res[dat[0]];
+    $.post("http://40.82.159.60:8080/getList",{},(res, status)=> {
     let validSub = [];
-    for(i in res){
-        if(res[i].ws == dat[3]) validSub.push(res[i]);
-    }
+       res = res[dat[0]];
+       for(i in res){
+           if(res[i].ws == dat[3]) validSub.push(res[i]);
+       }
+       let dom = '';
+       for(i in validSub){
+           i = validSub[i];
+           dom = `<div class="list" id="${i.sid}/${i.ws}/${i.ts}" onclick= "listclickevent(this)"><div class="item" id="reg">${i.ws}</div><div class="item" id="hop">${i.ts}</div><div class="item" id="id">${i.sid}</div></div>`
+           $('.listview').append(dom);
+       }
+
+
+
+    });
+    //filtering
     //build dom
-    let dom = '';
-    for(i in validSub){
-        i = validSub[i];
-        dom = `<div class="list" id="${i.sid}/${i.ws}/${i.ts}" onclick= "listclickevent(this)"><div class="item" id="reg">${i.ws}</div><div class="item" id="hop">${i.ts}</div><div class="item" id="id">${i.sid}</div></div>`
-        $('.listview').append(dom);
-    }
 }
 
 

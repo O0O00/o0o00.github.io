@@ -102,7 +102,29 @@
             font-size: 14pt;
             text-align: center;
         }
+        #go {
+            position: fixed;
+            padding: 4px;
+            height: 50px;
+            width: 100px;
+            line-height: 50px;
+            font-size: 12pt;
+            text-align: center;
+            color: white;
+            right: 0px;
+            top: 69px;
+            background-color: rgb(37, 39, 61);
+            border: 1px solid white;
 
+        }
+        #go:hover, #go:focus{
+            outline:none;
+            background: rgb(62, 65, 103);
+        }
+        #go:active {
+            outline:none;
+            background: rgb(37, 39, 61);
+        }
 
         @media all and (max-width:767px) {
             .tip {
@@ -122,12 +144,12 @@
     <body>
         <img src="http://school.gyo6.net/upload/logoImg/gyeongbuk/LogoImg_202010161011001000.gif" alt="">
         <div id="header">
-            <p id="t">선택과목 교환 도우미</p>
+            <p id="t">선택괴목 교환 도우미 등록 현황</p>
         </div>
         <div id="viewer">
             <div id="container1">
                 <select class="dropdown" id="year" onchange="onselectyear()">
-                    <option value="n">입학년도선택</option>
+                    <option value="n">입학연도선택</option>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                 </select>
@@ -147,6 +169,9 @@
                 <div class="listview">
 
                 </div>
+            </div>
+            <div id="go" onclick="document.location.href='register.html'">
+                등록하러가기
             </div>
         </div>
     </body>
